@@ -8,7 +8,7 @@ class WindowFocus {
 
   static EventChannel _eventChannel = EventChannel('window_focus_stream');
 
-  static Stream<bool> _windowFocusStream;
+  static Stream<bool>? _windowFocusStream;
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');
@@ -16,10 +16,10 @@ class WindowFocus {
   }
 
   static Stream<bool> getWindowFocusChangedStream() {
-    if (_windowFocusStream != null) return _windowFocusStream;
+    if (_windowFocusStream != null) return _windowFocusStream!;
 
     _windowFocusStream = _eventChannel.receiveBroadcastStream().map<bool>((value) => value);
-    return _windowFocusStream;
+    return _windowFocusStream!;
   }
 
 }
